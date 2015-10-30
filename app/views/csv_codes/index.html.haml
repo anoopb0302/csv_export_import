@@ -1,0 +1,36 @@
+.logout
+  = link_to " Logout", destroy_user_session_path, method: :delete, :class => 'btn btn-danger btn-flat'
+.panel.panel-default
+  .panel-heading 
+    %h2  
+      %b Future Consumer  
+      
+      %span{:style=>"color: green"}
+        ( Total codes:
+        = @total_codes_count
+      %span{:style=>"color: green"}
+        , Remaining codes:
+        = @remaining_codes_count  
+        )
+= form_tag import_csv_codes_path, :method=>:post, multipart: true do
+  .alert.alert-info.template
+    %strong Note:
+    Make sure your CSV is formatted Correctly
+
+  %br
+  .row
+    .col-md-offset-0.col-md-2
+      %strong 
+        Upload CSV:
+    .col-md-offset-0.col-md-4
+      = file_field_tag :file
+      %br
+      = submit_tag "Start Upload" ,:class=>"btn btn-success"
+  %br
+  .row 
+    .col-md-offset-0.col-md-2
+      %strong 
+        Download CSV:
+    .col-md-offset-0.col-md-4
+      = link_to "CSV Download", csv_codes_path(format:'csv'),:class=>"btn btn-primary" 
+              

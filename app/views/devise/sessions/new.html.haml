@@ -1,0 +1,14 @@
+.container  
+  %section#content
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      = devise_error_messages!
+      %h1 Login Form
+      %div
+        = f.text_field :email, :id => "username", :placeholder => "Email", :required => "", :type => "text"
+      %div
+        = f.password_field :password, :id => "password", :placeholder => "Password", :required => "", :type => "password"
+      %div
+        %input{:type => "submit", :value => "Log in"}
+      %div#forget
+        %a{:href => "#"} Lost your password?
+  
