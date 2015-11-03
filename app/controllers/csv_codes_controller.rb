@@ -1,6 +1,7 @@
 class CsvCodesController < ApplicationController
 
   layout 'csv_code'
+  before_action :authenticate_user!
   
   def import
     CsvCode.import(params[:file])

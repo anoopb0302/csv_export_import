@@ -6,10 +6,11 @@ class Api::SendSmsController < ApplicationController
     puts "+++++++++++++++++++++++++++++++++++++++++++++"
     check_code = CsvCode.where(used_at: nil).first
     	if check_code.nil?
-      	  return false
+      	  render :json => {:status => 200}
     	else
       	  check_code.update_attributes(:mobile_no => params[:from], :used_at => Time.now)
           send_message(check_code, params)
+          render :json => {:status => 200}
     	end
   end
 
