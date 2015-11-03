@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :send_sms, :except => [:index, :new, :create, :show, :edit, :update, :destroy] do
       collection do
         get :mobile_api
+        post :send_message
       end
     end    
   end

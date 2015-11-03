@@ -17,20 +17,5 @@ class CsvCodesController < ApplicationController
       format.csv {send_data @codes.to_csv ,filename: "Participant_Report_#{Time.now}.csv"}
     end
   end
-  
-  def mobile_api
-    check_code = CsvCode.where(used_at: nil).first
-    if check_code.nil?
-      return false
-    else
-      check_code.update_attributes(:mobile_no => params[:mobile_no], :used_at => Time.now)
-      flash[:success] = "code is sent successfully" 
-    end
-    redirect_to csv_codes_path
-  end
 
-private
-  def mobile_no
-    params.require(:csv_codes).permit(:mobile_no)
-  end
 end
