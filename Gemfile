@@ -18,7 +18,7 @@ gem 'roo-xls'
 gem 'mail'
 gem 'twitter-bootstrap-rails'
 gem 'exotel'
-
+gem 'font-awesome-rails'
 group :development, :test do
   gem 'web-console', '~> 2.0'
   gem 'spring'

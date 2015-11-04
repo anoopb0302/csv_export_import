@@ -1,6 +1,6 @@
 class CsvCodesController < ApplicationController
 
-  layout 'csv_code'
+
   before_action :authenticate_user!
   
   def import
@@ -12,6 +12,7 @@ class CsvCodesController < ApplicationController
   def index
     @total_codes_count = CsvCode.all.count
     @remaining_codes_count = CsvCode.where(used_at: nil).count
+    @used_codes_count = CsvCode.all.where("used_at is not ?", nil).count
     @codes=CsvCode.all.where("used_at is not ?", nil)
     respond_to do |format|
       format.html

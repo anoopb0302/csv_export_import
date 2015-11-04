@@ -2,35 +2,77 @@
   = link_to " Logout", destroy_user_session_path, method: :delete, :class => 'btn btn-danger btn-flat'
 .panel.panel-default
   .panel-heading 
-    %h2  
+    %h2
       %b Future Consumer  
-      
-      %span{:style=>"color: green"}
-        ( Total codes:
-        = @total_codes_count
-      %span{:style=>"color: green"}
-        , Remaining codes:
-        = @remaining_codes_count  
-        )
-= form_tag import_csv_codes_path, :method=>:post, multipart: true do
-  .alert.alert-info.template
-    %strong Note:
-    Make sure your CSV is formatted Correctly
 
-  %br
-  .row
-    .col-md-offset-0.col-md-2
-      %strong 
-        Upload CSV:
-    .col-md-offset-0.col-md-4
-      = file_field_tag :file
+/ Small boxes (Stat box)
+.row
+  .col-md-4.col-xs-4
+    / small box
+    .small-box.bg-aqua
+      .inner
+        %h3
+          = @total_codes_count
+        %p Total codes
+      .icon.effectfront
+        %span.fa.fa-list
+      %a.small-box-footer
+
+  .col-md-4.col-xs-4
+    / small box
+    .small-box.bg-orange
+      .inner
+        %h3
+          = @remaining_codes_count
+        %p Remaining codes
+      .icon.effectfront
+        %span.fa.fa-list
+      %a.small-box-footer
+
+  .col-md-4.col-xs-4
+    / small box
+    .small-box.bg-green
+      .inner
+        %h3
+          = @used_codes_count
+        %p Used codes
+      .icon.effectfront
+        %span.fa.fa-list
+      %a.small-box-footer
+%br
+%br
+%br
+%br
+= form_tag import_csv_codes_path,:style=>"border-style: double; padding:1%", :method=>:post, multipart: true do
+
+  .col-md-6.col-xs-6
+    %br
+    .row
+      .col-md-offset-0.col-md-4
+        %strong 
+          Upload CSV:
+      .col-md-offset-0.col-md-4
+        = file_field_tag :file
+        %br
+        = submit_tag "Start Upload" ,:class=>"btn btn-success"
+    %br
+    .row 
+      .col-md-offset-0.col-md-4
+        %strong 
+          Download CSV:
+      .col-md-offset-0.col-md-4
+        = link_to "CSV Download", csv_codes_path(format:'csv'),:class=>"btn btn-primary" 
+  .col-md-6.col-xs-6
+    .alert.alert-info.template
+      %strong Note:
+      Make sure your CSV is formatted Correctly  
       %br
-      = submit_tag "Start Upload" ,:class=>"btn btn-success"
-  %br
-  .row 
-    .col-md-offset-0.col-md-2
-      %strong 
-        Download CSV:
-    .col-md-offset-0.col-md-4
-      = link_to "CSV Download", csv_codes_path(format:'csv'),:class=>"btn btn-primary" 
-              
+      %br
+      %br
+      You can upload 
+      %strong Codes
+      in csv, xls and xlsx format.   
+      %br
+      %br
+      %br
+      Downloaded file will be in csv format.         

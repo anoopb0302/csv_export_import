@@ -12,8 +12,5 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome 
  */
-.logout{
-  float: right;
-  margin: 1%
-}
