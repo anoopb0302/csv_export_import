@@ -23,7 +23,7 @@ class CsvCode < ActiveRecord::Base
     CSV.generate do |csv|
       csv << ["Sl-No", "Unique Codes", "Used at", "Mobile No."] ## Header values of CSV
       all.each do |code|
-        csv << [code.id, code.unique_codes, code.used_at, code.mobile_no]
+        csv << [code.id, code.unique_codes, code.used_at.strftime('%b %e, %H:%M'), code.mobile_no]
       end
     end
   end
