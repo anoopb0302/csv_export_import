@@ -19,7 +19,7 @@ class Api::SendSmsController < ApplicationController
       puts check_code.inspect
       puts params.inspect
       puts "=============================================="
-      response = Exotel::Sms.send(:from => '2233836088', :to => params[:from], :body => "Dear Customer, Thank you for shopping Tasty Treat at Big Bazaar. Code - #{check_code.unique_codes}")
+      response = Exotel::Sms.send(:from => '02233836088', :to => params[:from], :body => "Dear Customer, Thank you for shopping Tasty Treat at Big Bazaar. Code - #{check_code.unique_codes}")
       sms_id = response.sid
   end
 
