@@ -5,7 +5,7 @@ class CsvCodesController < ApplicationController
   
   def import
     CsvCode.import(params[:file])
-    flash.now[:notice] = "codes added successfully"
+    flash[:notice] = "codes added successfully"
     redirect_to csv_codes_path
   end
 
@@ -21,3 +21,4 @@ class CsvCodesController < ApplicationController
   end
 
 end
+

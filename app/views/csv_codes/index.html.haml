@@ -1,3 +1,4 @@
+
 .logout
   = link_to " Logout", destroy_user_session_path, method: :delete, :class => 'btn btn-danger btn-flat'
 .panel.panel-default
@@ -43,8 +44,9 @@
 %br
 %br
 %br
-= form_tag import_csv_codes_path,:style=>"border-style: double; padding:1%", :method=>:post, multipart: true do
-
+= form_tag import_csv_codes_path,:id=>"csvCodes",:style=>"border-style: double; padding:1%", :method=>:post, multipart: true do
+  - if flash[:notice]
+    .notice= flash[:notice]
   .col-md-6.col-xs-6
     %br
     .row
@@ -61,7 +63,7 @@
         %strong 
           Download CSV:
       .col-md-offset-0.col-md-4
-        = link_to "CSV Download", csv_codes_path(format:'csv'),:class=>"btn btn-primary" 
+        = link_to "CSV Download", csv_codes_path(format:'csv'),:class=>"btn btn-primary",:id=>"csvCodes" 
   .col-md-6.col-xs-6
     .alert.alert-info.template
       %strong Note:

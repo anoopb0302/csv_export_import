@@ -11,8 +11,26 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
+//= require_tree
+//= require jquery.validate
 //= require jquery_ujs
+//= require csv_codes
+//= require jquery.js
+//= require jquery.validate.additional-methods
 //= require turbolinks
-//= require_tree .
 //= require twitter/bootstrap
 //= require.js
+
+
+$(document).ready(function () {
+$("#csvCodes").validate({
+rules: {
+"file": {required: true},
+},
+messages:
+{
+'file': {required: "*Please Choose a file to Upload"},
+},
+});
+});
