@@ -15,11 +15,11 @@ class Api::SendSmsController < ApplicationController
   end
 
   def send_message(check_code, params)
-       puts "=============================================="
-       puts check_code.inspect
-       puts params.inspect
-       puts "=============================================="
-      response = Exotel::Sms.send(:from => '2233836088', :to => params[:from], :body => "Thanks for purshasing product. Your code is #{check_code.unique_codes}")
+      puts "=============================================="
+      puts check_code.inspect
+      puts params.inspect
+      puts "=============================================="
+      response = Exotel::Sms.send(:from => '2233836088', :to => params[:from], :body => "Dear Customer, Thank you for shopping Tasty Treat at Big Bazaar. Code - #{check_code.unique_codes}")
       sms_id = response.sid
   end
 
