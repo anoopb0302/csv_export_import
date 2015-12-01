@@ -22,10 +22,20 @@ class CsvCode < ActiveRecord::Base
   def self.to_csv
     CSV.generate do |csv|
       csv << ["Sl-No", "Unique Codes", "Used at", "Mobile No."] ## Header values of CSV
+      i=1
       all.each do |code|
-        csv << [code.id, code.unique_codes, code.used_at.strftime('%b %e, %H:%M'), code.mobile_no]
+        csv << [i, code.unique_codes, code.used_at.strftime('%b %e, %H:%M'), code.mobile_no]
+      i=i+1
       end
     end
   end
+  
+  def self.search(search)
+    if search
+      where('mobile_no LIKE ?',"%#{search}%")
+    else
+      all
+    end
+  end  
   
 end

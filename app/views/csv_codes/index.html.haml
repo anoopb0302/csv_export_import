@@ -1,45 +1,72 @@
-
+%button{"data-target" => "#myModal", "data-toggle" => "modal", :style => "margin-top: 17%;background: blue; padding: 16px ; -ms-transform: rotate(270deg); position: fixed;z-index: 2147483647; -webkit-transform: rotate(270deg); transform: rotate(270deg); margin-left: -21px; ", :type => "button"} Customer Feedback
+#myModal.modal.fade{:role => "dialog"}
+  .modal-dialog.modal-content
+    .modal-header
+      %button.close{"data-dismiss" => "modal", :type => "button"} ×
+      %h4.modal-title Welcome to our support
+    .modal-body
+      %a#ticketframe{:href => "http://ticketing.cemplay.com/widget_complain?user_id=142"}
+        customerhelp
+        %script{:async => "true", :src => "http://ticketing.cemplay.com/getElementById.js", :type => "text/javascript"}
 .logout
   = link_to " Logout", destroy_user_session_path, method: :delete, :class => 'btn btn-danger btn-flat'
 .panel.panel-default
   .panel-heading 
-    %h2
+    %h1
       %b Future Consumer  
 
 / Small boxes (Stat box)
 .row
-  .col-md-4.col-xs-4
+  .col-md-3.col-xs-3
     / small box
     .small-box.bg-aqua
       .inner
         %h3
           = @total_codes_count
-        %p Total codes
+        %p Total Codes
       .icon.effectfront
-        %span.fa.fa-list
-      %a.small-box-footer
+        %span.fa.fa-plus-circle
+      %a.small-box-footer{:href => "/total_codes"}
+        More info
+        %i.fa.fa-arrow-circle-right
 
-  .col-md-4.col-xs-4
+  .col-md-3.col-xs-3
     / small box
     .small-box.bg-orange
       .inner
         %h3
           = @remaining_codes_count
-        %p Remaining codes
+        %p Remaining Codes
       .icon.effectfront
-        %span.fa.fa-list
-      %a.small-box-footer
+        %span.fa.fa-minus-circle
+      %a.small-box-footer{:href => "/remaining_codes"}
+        More info
+        %i.fa.fa-arrow-circle-right 
 
-  .col-md-4.col-xs-4
+  .col-md-3.col-xs-3
     / small box
     .small-box.bg-green
       .inner
         %h3
           = @used_codes_count
-        %p Used codes
+        %p Missed Calls
+      .icon.effectfront
+        %span.fa.fa-phone
+      %a.small-box-footer{:href => "/missed_call"}
+        More info
+        %i.fa.fa-arrow-circle-right
+  .col-md-3.col-xs-3
+    / small box
+    .small-box.bg-blue
+      .inner
+        %h3
+          = @used_codes_count
+        %p Used Codes
       .icon.effectfront
         %span.fa.fa-list
-      %a.small-box-footer
+      %a.small-box-footer{:href => "/missed_call"}
+        More info
+        %i.fa.fa-arrow-circle-right
 %br
 %br
 %br
@@ -77,4 +104,34 @@
       %br
       %br
       %br
-      Downloaded file will be in csv format.         
+      Downloaded file will be in csv format.        
+
+%br
+%br
+%br
+ 
+.hidden-fields{:style => "display: none;"}               
+  = content_tag "div", id: "xDiv", data: {stuff: @user_array} do
+    end
+  = content_tag "div", id: "totalDiv", data: {stuff: @used_codes_count} do
+    end
+  = content_tag "div", id: "remainingDiv", data: {stuff:  @remaining_codes_count} do
+    end
+  = content_tag "div", id: "missedcallDiv", data: {stuff:  @used_codes_count} do
+    end        
+  = content_tag "div", id: "yDiv", data: {stuff: @date_array} do
+    end 
+%div{:id=> "container-1", :style => "min-width: 310px; height: 400px; margin: 0 auto", :data => {stuff: @user_array , code: @ad_code}}
+%br
+%br
+%br
+#barchart
+  .hidden-fields{:style => "display: none;"}
+    = content_tag "div", id: "BarDivone", data: {stuff: @one} do
+      end
+    = content_tag "div", id: "BarDivtwo", data: {stuff: @two} do
+      end
+    = content_tag "div", id: "BarDivthree", data: {stuff: @three} do
+      end 
+    = content_tag "div", id: "BarDivmore", data: {stuff: @more} do
+      end      

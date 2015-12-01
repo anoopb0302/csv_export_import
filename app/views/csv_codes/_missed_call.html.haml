@@ -1,0 +1,19 @@
+.table-responsive
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Codes
+        %th Code uploaded on
+        %th Mobile No. 
+        %th Code Used on
+    %tbody
+      - @used_codes.each do |codes|
+        %tr{:class=> "#{cycle("info","default")}"}
+          %td
+            = codes.unique_codes.to_i
+          %td 
+            = codes.created_at.strftime('%b %e, %H:%M')
+          %td
+            = codes.mobile_no
+          %td
+            = codes.used_at.strftime('%b %e, %H:%M')

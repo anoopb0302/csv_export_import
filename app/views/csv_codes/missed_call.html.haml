@@ -1,0 +1,13 @@
+= form_tag missed_call_path, :method => 'get', :id => "mobile_no_search" do
+  = text_field_tag :search, params[:search],:placeholder=>" mobile no."
+  %span
+    = submit_tag "Search", :mobile_no => nil
+.back
+  = link_to "Back",csv_codes_path,:class => "btn btn-default"
+.panel.panel-default
+  .panel-heading 
+    %h3
+      %b Missed Call
+#mobile_no= render 'missed_call',:locals=>{"@codes"=>@codes}
+
+= will_paginate  @used_codes,renderer:BootstrapPagination::Rails

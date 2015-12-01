@@ -12,7 +12,11 @@ Rails.application.routes.draw do
       get :mobile_api
     end 
   end 
-
+  
+  get 'total_codes' => 'csv_codes#total_codes'
+  get 'remaining_codes' => 'csv_codes#remaining_codes'
+  get 'missed_call' => 'csv_codes#missed_call'
+  
   namespace :api do
     resources :send_sms, :except => [:index, :new, :create, :show, :edit, :update, :destroy] do
       collection do

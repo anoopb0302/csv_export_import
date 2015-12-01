@@ -1,0 +1,22 @@
+
+.back
+  = link_to "Back",csv_codes_path,:class => "btn btn-default"
+.panel.panel-default
+  .panel-heading 
+    %h3
+      %b Remaining Codes
+.table-responsive
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Codes
+        %th Code uploaded on
+
+    %tbody
+      - @remaining_codes.each do |codes|
+        %tr{:class=> "#{cycle("info","default")}"}
+          %td
+            = codes.unique_codes.to_i
+          %td
+            = codes.created_at.strftime('%b %e, %H:%M')
+= will_paginate  @remaining_codes,renderer:BootstrapPagination::Rails          
